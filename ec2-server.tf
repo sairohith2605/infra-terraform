@@ -11,8 +11,6 @@ resource "aws_vpc" "demo-vpc-01" {
   }
 }
 
-
-
 # Declare subnets within the VPC to place
 # the EC2 instance in
 resource "aws_subnet" "demo-subnet" {
@@ -41,7 +39,6 @@ resource "aws_route" "route" {
 
 data "aws_availability_zones" "available" {}
 
-
 # Use this data block to filter out the
 # AWS AMI images for the EC2 linux instance
 data "aws_ami" "amzn-linux-2023-ami" {
@@ -62,23 +59,23 @@ resource "aws_key_pair" "demo-instance-keypair" {
 resource "aws_security_group" "demo-instance-sg" {
   name        = "demo-instance-sg"
   description = "Allow TLS inbound traffic"
-  vpc_id      = "${aws_vpc.demo-vpc-01.id}"
+  vpc_id      = aws_vpc.demo-vpc-01.id
 
   ingress {
     # TLS (change to whatever ports you need)
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
+    from_port = 22
+    to_port   = 22
+    protocol  = "tcp"
     # Please restrict your ingress to only necessary IPs and ports.
     # Opening to 0.0.0.0/0 can lead to security vulnerabilities.
     cidr_blocks = ["183.82.109.207/32"]
   }
 
   egress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
-    cidr_blocks     = ["0.0.0.0/0"]
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -86,23 +83,20 @@ resource "aws_security_group" "demo-instance-sg" {
 # within the subnet created above, and the ami
 # filtered by the data block
 resource "aws_instance" "demo-instance" {
-  ami           = data.aws_ami.amzn-linux-2023-ami.id
-  instance_type = "t2.small"
-  subnet_id     = aws_subnet.demo-subnet.id
-  key_name = aws_key_pair.demo-instance-keypair.key_name
+  ami                         = data.aws_ami.amzn-linux-2023-ami.id
+  instance_type               = "t2.small"
+  subnet_id                   = aws_subnet.demo-subnet.id
+  key_name                    = aws_key_pair.demo-instance-keypair.key_name
   associate_public_ip_address = true
-  vpc_security_group_ids = [aws_security_group.demo-instance-sg.id]
+  vpc_security_group_ids      = [aws_security_group.demo-instance-sg.id]
 
   tags = {
-    Name = "srr-tf-demo-ec2"
+    Name        = "srr-tf-demo-ec2"
     Environment = "Demo"
   }
-
-  
 }
 
 # Output the public DNS of the instance
 output "instance_public_dns" {
   value = aws_instance.demo-instance.public_dns
 }
-
