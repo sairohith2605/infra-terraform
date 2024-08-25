@@ -45,4 +45,8 @@ resource "aws_dynamodb_table" "tf_state_s3_locks" {
       name = "LockID"
       type = "S"
     }
+
+    point_in_time_recovery {
+      enabled = true
+    }
 }
