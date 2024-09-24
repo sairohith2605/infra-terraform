@@ -41,7 +41,7 @@ Add a new directory called config and add a file `demo.tfvars` inside it.
 
 ##### Configuring Amazon S3 for Backend
 
-The `terraform.tf` contains the backend configuration configuration for an S3 bucket to persist the state. Follow the below instructions to setup the backend
+The `terraform.tf` contains the backend configuration for an S3 bucket to persist the state. Follow the below instructions to set up the backend
 
 - Run init with the backend flag for S3:
 
@@ -51,4 +51,4 @@ The `terraform.tf` contains the backend configuration configuration for an S3 bu
 
 ##### Local State Persistence
 
-If you do not want to use an S3 backend, and instead use the local directory for state, then comment out the contents in `terraform.tf` file. You can run the `terraform init` command without include `backend-config`.
+If you do not want to use an S3 backend, and instead use the local directory for state, then comment out the contents in `terraform.tf` file. You can run the `terraform init` command without including `backend-config`.
