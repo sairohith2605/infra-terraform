@@ -36,3 +36,7 @@ module "ec2_instance_demo" {
 output "instance_public_dns" {
   value = module.ec2_instance_demo.public_dns
 }
+
+module "demo_ecs_cluster" {
+  source = "./ecs"
+}
