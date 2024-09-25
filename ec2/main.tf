@@ -20,6 +20,9 @@ resource "aws_instance" "demo-instance" {
   key_name                    = aws_key_pair.demo-instance-keypair.key_name
   associate_public_ip_address = var.associate_public_ip_address
   vpc_security_group_ids      = [var.security_group_id]
+  root_block_device {
+    encrypted = true
+  }
 
   tags = {
     Name        = var.instance_name
