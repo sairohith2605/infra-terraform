@@ -18,4 +18,14 @@ variable "access_key_name" {
 
 variable "security_group_id" {
   type = string
+  nullable = false
+}
+
+variable "associate_public_ip_address" {
+  type = bool
+  default = false
+}
+
+variable "keypair_public_key" {
+  type = string
 }

@@ -10,6 +10,7 @@ variable "description" {
 
 variable "vpc_id" {
   type = string
+  nullable = false
 }
 
 variable "egress_from_port" {

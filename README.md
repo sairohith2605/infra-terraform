@@ -15,7 +15,7 @@ It is suggested to enable WSL (v2) with Ubuntu distribution if you're working on
 
 #### Installing AWS CLI
 
-It is mandatory that we install AWS CLI before running any automation with Terraform, since Terraform uses the CLI under the hood to deloy any infrastructure. 
+It is mandatory that we install AWS CLI before running any automation with Terraform, since Terraform uses the CLI under the hood to deploy any infrastructure. 
 
 Installation source for AWS CLI V2 - https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 

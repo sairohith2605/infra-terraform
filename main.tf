@@ -29,6 +29,7 @@ module "ec2_instance_demo" {
   access_key_name   = "ec2-access-keypair-${var.ec2_instance_environment}}"
   subnet_id         = module.vpc_ec2_demo.subnet_id
   security_group_id = module.security_group_ec2.security_group_id
+  keypair_public_key = var.keypair_public_key
 }
 
 # Output the public DNS of the instance
