@@ -10,6 +10,7 @@ variable "environment" {
 
 variable "subnet_id" {
   type = string
+  nullable = false
 }
 
 variable "access_key_name" {
