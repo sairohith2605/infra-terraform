@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "tf_state" {
-  bucket = "tf-state-712c84d7-480d-4beb-9e16-35f598cc7071"
+  bucket = var.s3_state_bucket
 
   lifecycle {
     prevent_destroy = true
